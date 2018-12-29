@@ -11,7 +11,7 @@ public class MainMenuUI : MonoBehaviour {
 
     public void OnStartNewGame()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("new_game");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("game");
     }
 
     public void OnSettings()

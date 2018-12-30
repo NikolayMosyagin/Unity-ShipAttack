@@ -42,6 +42,22 @@ public class GameConfigure : MonoBehaviour {
         player.transform.parent = this._game.transform;
         var playerShip = Instantiate(this._playerPrototype, player.transform);
 
+        var enemy = new GameObject("Enemy");
+        enemy.transform.parent = this._game.transform;
+        var enemiesPrototype = Resources.LoadAll<Ship>("Ships");
+        for (int i = 0; i < enemiesPrototype.Length; ++i)
+        {
+            int count = enemiesPrototype[i].type == ShipType.Common ? 5 : 1;
+            for (int j = 0; j < count; ++j)
+            {
+                var ship = Instantiate(enemiesPrototype[i], enemy.transform);
+                ship.gameObject.SetActive(false);
+            }
+        }
+
+
+
+
 
         this._game.SetActive(true);
     }

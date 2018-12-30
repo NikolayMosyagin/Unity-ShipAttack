@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameConfigure : MonoBehaviour {
 
+    private const int BackCount = 2;
 #pragma warning disable 649
     [SerializeField]
     private Camera _camera;
@@ -22,10 +23,10 @@ public class GameConfigure : MonoBehaviour {
         var backsParent = backs.transform;
 
         var size = Vector2.zero;
-        for (int i = 0; i < sprites.Length; ++i)
+        for (int i = 0; i < BackCount; ++i)
         {
             var back = Instantiate(this._backPrototype, backsParent);
-            back.Initialize(sprites[i], sprites.Length);
+            back.Initialize(sprites[i % sprites.Length], BackCount);
             size = back.backSize;
             back.transform.position = new Vector3(size.x * i, 0, 0);
         }

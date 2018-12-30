@@ -18,17 +18,17 @@ public class GameLogic : MonoBehaviour {
         {
             this._backs = backs.GetComponentsInChildren<BackLogic>();
         }
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
         if (this._backs != null)
         {
             for (int i = 0; i < this._backs.Length; ++i)
             {
-                this._backs[i].Run(Time.deltaTime);
+                this.StartCoroutine(this._backs[i].Play());
             }
         }
+	}
+	
+	// Update is called once per frame
+	void Update () {
 	}
 }

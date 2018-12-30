@@ -24,16 +24,28 @@ public class BackLogic : MonoBehaviour {
         this._totalCount = totalCount;
     }
 
-    public void Run(float delta)
+    public IEnumerator Play()
     {
-        var position = this.transform.position;
-
-        position.x -= delta * BackSpeed;
-        if (position.x <= -this._renderer.size.x)
+        do
         {
-            position.x = (this._totalCount - 1) * this._renderer.size.x;
-        }
-        this.transform.position = position;
+            yield return this.Animate();
+            this.transform.position = new Vector3((this._totalCount - 1) * this._renderer.size.x, 0, 0);
+        } while (true);
     }
 
+    private IEnumerator Animate()
+    {
+        var start = this.transform.position;
+        var end = new Vector3(-this._renderer.size.x, start.y, start.z);
+        float distance = (end - start).magnitude;
+        float time = distance / BackSpeed;
+        float t = 0;
+        while (t < time)
+        {
+            t += Time.deltaTime;
+            this.transform.position = Vector3.Lerp(start, end, t / time);
+            yield return null;
+        }
+        this.transform.position = end;
+    }
 }

@@ -6,8 +6,11 @@ public class GameLogic : MonoBehaviour {
 
 #pragma warning disable 649
     [SerializeField]
-    private BackLogic[] _backs;
+    private Camera _mainCamera;
 #pragma warning restore 649
+
+    private BackLogic[] _backs;
+    private ShipMove _playerShip;
 
 
     // Use this for initialization
@@ -17,6 +20,15 @@ public class GameLogic : MonoBehaviour {
         if (backs)
         {
             this._backs = backs.GetComponentsInChildren<BackLogic>();
+        }
+        var player = this.transform.Find("Player");
+        if (player)
+        {
+            this._playerShip = player.GetComponentInChildren<ShipMove>();
+            if (this._playerShip)
+            {
+                this._playerShip.Initialize(this._mainCamera);
+            }
         }
 
         if (this._backs != null)

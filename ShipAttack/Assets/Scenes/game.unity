@@ -144,6 +144,8 @@ MonoBehaviour:
   _game: {fileID: 1503853361}
   _backPrototype: {fileID: 114963738361763234, guid: 32ac6f89854d6c04d855c98c38af7054,
     type: 2}
+  _playerPrototype: {fileID: 114956413259524966, guid: c87e05e1cf86ed6419bf5425948fcf1c,
+    type: 2}
 --- !u!4 &729241351
 Transform:
   m_ObjectHideFlags: 0
@@ -277,4 +279,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bda782bd6e0ced849957612a749f6de4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _backs: []
+  _mainCamera: {fileID: 789268143}

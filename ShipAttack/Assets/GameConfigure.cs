@@ -12,6 +12,8 @@ public class GameConfigure : MonoBehaviour {
     private GameObject _game;
     [SerializeField]
     private BackLogic _backPrototype;
+    [SerializeField]
+    private ShipMove _playerPrototype;
 #pragma warning restore 649
 
     private void Awake()
@@ -35,6 +37,12 @@ public class GameConfigure : MonoBehaviour {
             this._camera.orthographicSize = size.y / 2;
             this._camera.aspect = size.x / size.y;
         }
+
+        var player = new GameObject("Player");
+        player.transform.parent = this._game.transform;
+        var playerShip = Instantiate(this._playerPrototype, player.transform);
+
+
         this._game.SetActive(true);
     }
 }
